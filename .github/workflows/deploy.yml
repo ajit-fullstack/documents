@@ -1,7 +1,8 @@
-name: "CI/CD Pipeline"
+name: CI/CD for React App
+
 on:
   push:
-    branches: [master]
+    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -10,23 +11,25 @@ permissions:
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: ./actions/local-action
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Setup node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
-      
-      - name: Install dependencies
-        uses: npm install
 
-      - name: Build project
-        uses: npm run build
-      
-      - name: Deploy to github pages
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build Project
+        run: npm run build
+        # env:
+        #   REACT_APP_WELCOME_TEXT: ${{ vars.REACT_APP_WELCOME_TEXT }}
+
+      - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@4.1.0
         with:
           branch: gh-pages
