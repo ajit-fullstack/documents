@@ -4,8 +4,8 @@ on:
     branch: [master]
   workflow_dispatch:
 
-permissions:
-  contents: write
+# permissions:
+#   contents: write
 
 jobs:
   build_and_deploy:
