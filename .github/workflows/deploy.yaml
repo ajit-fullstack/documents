@@ -11,13 +11,19 @@ jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
     steps:
-      -name: Checkout repository
-        uses: actions/checkout@v2
+      # -name: Checkout repository
+      #   uses: actions/checkout@v3
 
       -name: Setup node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
+      
+      -name: Install dependencies
+        uses: npm install
+
+      -name: Build project
+        uses: npm run build
       
       -name: Deploy to github pages
         uses: JamesIves/github-pages-deploy-action@4.1.0
