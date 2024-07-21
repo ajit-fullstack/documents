@@ -14,6 +14,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      - name: Execute custom action
+        uses: ./.github/actions/my-custom-action/
+
       - name: Setup node.js
         uses: actions/setup-node@v3
         with:
@@ -25,8 +28,8 @@ jobs:
       - name: Build project
         uses: npm run build
       
-      # - name: Deploy to github pages
-      #   uses: JamesIves/github-pages-deploy-action@4.1.0
-      #   with:
-      #     branch: gh-pages
-      #     folder: build
+      - name: Deploy to github pages
+        uses: JamesIves/github-pages-deploy-action@4.1.0
+        with:
+          branch: gh-pages
+          folder: build
