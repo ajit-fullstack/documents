@@ -7,6 +7,7 @@ export function Counter() {
     const dispatch = useDispatch();
     return (
         <div>
+            {process.env.REACT_APP_WELCOME_TEXT}
             <button onClick={()=> dispatch(increment())}>+</button>
             <span>{count}</span>
             <button onClick={()=> dispatch(dcrement())}>-</button>
